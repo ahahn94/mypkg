@@ -16,25 +16,30 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-import os
 from sys import argv
+
+import os
 from subprocess import check_output
 
+
 def main(params):
-    if  ("--help" in params or len(params) == 0):
+    install_exit_code = 0 # must be 0 (=successfull) for clear to work. prevents deletion of file if install fails.
+    if ("--help" in params or len(params) == 0):
         print(HELPTEXT)
         return 0
     if ("bi" in params):
         build()
     if ("it" in params):
-        install()
+        install_exit_code = install()
     if ("l" in params):
         launch()
     if ("rm" in params):
         remove()
     if ("cl" in params):
-        clear()
+        if (install_exit_code == 0):
+            clear()
     return 0
+
 
 def print_color(options, message):
     """
@@ -113,6 +118,7 @@ def clear():
     print_color([GREEN, BOLD], HEADER + "Deleting package files from working directory...")
     return os.system(command)
 
+
 ### Constants
 
 # Font-Options
@@ -130,20 +136,20 @@ HEADER = "[MYPKG] "
 
 # Help text
 HELPTEXT = GREEN + BOLD + "\t\t\t\tMYPKG\n" \
-           "Helper script for building, installing and removing eopkg 3rd party packages.\n" \
-           "\t\t\tCopyright (C) 2018 ahahn94\n\n" + NORMAL + "" \
-           "mypkg.py has to be run as root or via the mypkg bash script.\n\n" \
-           "Usage: mypkg [bi] [it] [l] [rm] [cl] [--help]\n\n" \
-           "Options:\n" \
-           " bi\t\t Build package from local pspec.xml file\n" \
-           " it\t\t Install local package file with the same basename as the working directory\n" \
-           " l\t\t Launch binary with the same name as the working directory\n" \
-           " rm\t\t Remove package with the same name as the working directory\n" \
-           " cl\t\t Delete local package file with the same basename as the working directory\n" \
-           " --help\t\t Show this helptext"
+                          "Helper script for building, installing and removing eopkg 3rd party packages.\n" \
+                          "\t\t\tCopyright (C) 2018 ahahn94\n\n" + NORMAL + "" \
+                                                                            "mypkg.py has to be run as root or via the mypkg bash script.\n\n" \
+                                                                            "Usage: mypkg [bi] [it] [l] [rm] [cl] [--help]\n\n" \
+                                                                            "Options:\n" \
+                                                                            " bi\t\t Build package from local pspec.xml file\n" \
+                                                                            " it\t\t Install local package file with the same basename as the working directory\n" \
+                                                                            " l\t\t Launch binary with the same name as the working directory\n" \
+                                                                            " rm\t\t Remove package with the same name as the working directory\n" \
+                                                                            " cl\t\t Delete local package file with the same basename as the working directory\n" \
+                                                                            " --help\t\t Show this helptext"
 
 # If not run by root, exit with error message.
-if not os.getuid()==0:
+if not os.getuid() == 0:
     print_color([RED, BOLD], HEADER + "This program must be run as root!\nAborting")
     exit(1)
 
