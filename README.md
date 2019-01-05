@@ -21,3 +21,11 @@ Options:
  --help          Show this helptext.
 
  </pre>
+ 
+ ## Installation
+ You can install mypkg either directly via `./install.sh` from this repo or via the package from my 3rd party repo.
+ I recommend using the package. You can install it via
+ ```
+ sudo eopkg bi --ignore-safety https://raw.githubusercontent.com/ahahn94/my-3rd-party/master/system/mypkg/pspec.xml
+ sudo eopkg it mypkg*.eopkg;sudo rm mypkg*.eopkg
+ ```
