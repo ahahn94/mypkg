@@ -463,10 +463,10 @@ HELPTEXT = GREEN + BOLD + "\t\t\t\tMYPKG\n" \
                                                                             "       mypkg up LinkToNewArchive Versionnumber\n\n" \
                                                                             "Options:\n" \
                                                                             " bi\t\t Build package from local pspec.xml file.\n" \
-                                                                            " it\t\t Install local package file with the same basename as the working directory.\n" \
-                                                                            " l\t\t Launch binary with the same name as the working directory.\n" \
-                                                                            " rm\t\t Remove package with the same name as the working directory.\n" \
-                                                                            " cl\t\t Delete local package file with the same basename as the working directory.\n" \
+                                                                            " it\t\t Install local package file specified by pspec.xml in working directory.\n" \
+                                                                            " l\t\t Launch binary specified by pspec.xml in working directory.\n" \
+                                                                            " rm\t\t Remove package specified by pspec.xml in working directory.\n" \
+                                                                            " cl\t\t Delete local package file specified by pspec.xml in working directory.\n" \
                                                                             " up\t\t Update the pspec.xml, build and install the package, delete the package file.\n" \
                                                                             " ui\t\t Update installed 3rd party packages.\n" \
                                                                             " li\t\t List installed 3rd party packages.\n" \

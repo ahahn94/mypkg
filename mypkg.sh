@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sudo ~/bin/mypkg.py $@
+sudo /opt/mypkg/mypkg.py $@

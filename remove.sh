@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-rm ~/bin/mypkg ~/bin/mypkg.py
+rm -r /usr/bin/mypkg /opt/mypkg

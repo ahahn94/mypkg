@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-mkdir ~/bin
-cp mypkg.py ~/bin/mypkg.py
-cp mypkg.sh ~/bin/mypkg
+mkdir /opt/mypkg
+cp mypkg.py /opt/mypkg/mypkg.py
+cp mypkg.sh /usr/bin/mypkg
