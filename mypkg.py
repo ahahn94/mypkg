@@ -2,7 +2,7 @@
 
 import fcntl
 #
-# Copyright (C) 2018  ahahn94
+# Copyright (C) 2019  ahahn94
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 2 of the License, or
@@ -45,7 +45,7 @@ def main(params):
     if (init == 0):
         print_color([GREEN, BOLD], HEADER + "Initialization ok. Proceeding...")
         install_exit_code = 0  # must be 0 (=successfull) for clear to work. prevents deletion of file if install fails.
-        working_directory = os.getcwd()  # The options bi it cl rm l and up work on the current working directory.
+        working_directory = os.getcwd()  # The options bp ip cp rp lp and up work on the current working directory.
         if ("--help" in params or len(params) == 0):
             print(HELPTEXT)
             return 0
@@ -66,18 +66,17 @@ def main(params):
                 update(working_directory, tarball_link, version)
             else:
                 print(HELPTEXT)
-        if ("bi" in params):
+        if ("bp" in params):
             build(working_directory)
-        if ("it" in params):
+        if ("ip" in params):
             install_exit_code = install(working_directory)
-        if ("l" in params):
+        if ("lp" in params):
             launch(working_directory)
         if ("rm" in params):
             remove(working_directory)
-        if ("cl" in params):
+        if ("cp" in params):
             if (install_exit_code == 0):
                 clear(working_directory)
-        # Todo: Options for listInstalled, listAvailable
         return 0
     else:
         print_color([RED, BOLD], HEADER + "Initialization failed. Aborting.")
@@ -456,22 +455,26 @@ HEADER = "[MYPKG] "
 
 # Help text
 HELPTEXT = GREEN + BOLD + "\t\t\t\tMYPKG\n" \
-                          "Helper script for building, installing and removing eopkg 3rd party packages.\n" \
-                          "\t\t\tCopyright (C) 2018 ahahn94\n\n" + NORMAL + "" \
+                          "Helper script for Solus 3rd party packages.\n" \
+                          "\t\t\tCopyright (C) 2019 ahahn94\n\n" + NORMAL + "" \
                                                                             "mypkg.py has to be run as root or via the mypkg bash script.\n\n" \
                                                                             "Usage: mypkg [bi] [it] [l] [rm] [cl] [ui] [la] [li] [--help]\n" \
                                                                             "       mypkg up LinkToNewArchive Versionnumber\n\n" \
                                                                             "Options:\n" \
-                                                                            " bi\t\t Build package from local pspec.xml file.\n" \
-                                                                            " it\t\t Install local package file specified by pspec.xml in working directory.\n" \
-                                                                            " l\t\t Launch binary specified by pspec.xml in working directory.\n" \
-                                                                            " rm\t\t Remove package specified by pspec.xml in working directory.\n" \
-                                                                            " cl\t\t Delete local package file specified by pspec.xml in working directory.\n" \
+                                                                            "\n" \
+                                                                            "Options for working on a local copy of the repo (have to be run in a directory containing a pspec.xml):\n" \
+                                                                            " bp\t\t Build package from local pspec.xml file.\n" \
+                                                                            " ip\t\t Install local package file specified by pspec.xml in working directory.\n" \
+                                                                            " lp\t\t Launch binary specified by pspec.xml in working directory.\n" \
+                                                                            " rp\t\t Remove package specified by pspec.xml in working directory.\n" \
+                                                                            " cp\t\t Delete local package file specified by pspec.xml in working directory.\n" \
+                                                                            "\n" \
+                                                                            "Options for global operations (can be run anywhere):\n" \
                                                                             " up\t\t Update the pspec.xml, build and install the package, delete the package file.\n" \
                                                                             " ui\t\t Update installed 3rd party packages.\n" \
                                                                             " li\t\t List installed 3rd party packages.\n" \
                                                                             " la\t\t List available 3rd party packages.\n" \
-                                                                            " --help\t\t Show this helptext." # Todo: Update help text.
+                                                                            " --help\t\t Show this helptext."
 
 # If not run by root, exit with error message.
 if not os.getuid() == 0:

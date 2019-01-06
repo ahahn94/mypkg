@@ -1,5 +1,5 @@
 # MYPKG
-Helper script for building, installing and removing eopkg 3rd party packages.  
+Helper script for Solus 3rd party packages.  
 
 mypkg.py has to be run as root or via the mypkg bash script.
 
@@ -9,11 +9,14 @@ Usage: mypkg [bi] [it] [l] [rm] [cl] [ui] [la] [li] [--help]
 
 Options:
 
- bi              Build package from local pspec.xml file.
- it              Install local package file specified by pspec.xml in working directory.
- l               Launch binary specified by pspec.xml in working directory.
- rm              Remove package specified by pspec.xml in working directory.
- cl              Delete local package file specified by pspec.xml in working directory.
+Options for working on a local copy of the repo (have to be run in a directory containing a pspec.xml):
+ bp              Build package from local pspec.xml file.
+ ip              Install local package file specified by pspec.xml in working directory.
+ lp              Launch binary specified by pspec.xml in working directory.
+ rp              Remove package specified by pspec.xml in working directory.
+ cp              Delete local package file specified by pspec.xml in working directory.
+
+Options for global operations (can be run anywhere):
  up              Update the pspec.xml, build and install the package, delete the package file.
  ui              Update installed 3rd party packages.
  li              List installed 3rd party packages.
