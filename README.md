@@ -17,7 +17,8 @@ Options for working on a local copy of the repo (have to be run in a directory c
  cp              Delete local package file specified by pspec.xml in working directory.
 
 Options for global operations (can be run anywhere):
- up              Update the pspec.xml, build and install the package, delete the package file.
+ up              Update the pspec.xml, build and install the package.
+ dc              Delete all cached packages (like `cp`, but for all packages)
  ui              Update installed 3rd party packages.
  li              List installed 3rd party packages.
  la              List available 3rd party packages.

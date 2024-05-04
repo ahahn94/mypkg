@@ -2,7 +2,7 @@
 
 import fcntl
 #
-# Copyright (C) 2019  ahahn94
+# Copyright (C) 2024  ahahn94
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 2 of the License, or
@@ -77,6 +77,8 @@ def main(params):
         if ("cp" in params):
             if (install_exit_code == 0):
                 clear(working_directory)
+        if ("dc" in params):
+            clear_cache()
         return 0
     else:
         print_color([RED, BOLD], HEADER + "Initialization failed. Aborting.")
@@ -255,6 +257,15 @@ def clear(working_directory):
     package_name = get_package_name(working_directory + "/pspec.xml")
     command = "cd " + mypkg_eopkg_cache + "; sudo rm " + package_name + "*.eopkg"
     print_color([GREEN, BOLD], HEADER + "Deleting package files from working directory...")
+    return os.system(command)
+
+def clear_cache():
+    """
+    Remove all eopkg files from ~/.mypkg/cache
+    :return:
+    """
+    command = "cd " + mypkg_eopkg_cache + "; sudo rm *.eopkg"
+    print_color([GREEN, BOLD], HEADER + "Deleting all package files from cache directory...")
     return os.system(command)
 
 
@@ -456,7 +467,7 @@ HEADER = "[MYPKG] "
 # Help text
 HELPTEXT = GREEN + BOLD + "\t\t\t\tMYPKG\n" \
                           "Helper script for Solus 3rd party packages.\n" \
-                          "\t\t\tCopyright (C) 2019 ahahn94\n\n" + NORMAL + "" \
+                          "\t\t\tCopyright (C) 2024 ahahn94\n\n" + NORMAL + "" \
                                                                             "mypkg.py has to be run as root or via the mypkg bash script.\n\n" \
                                                                             "Usage: mypkg [bi] [it] [l] [rm] [cl] [ui] [la] [li] [--help]\n" \
                                                                             "       mypkg up LinkToNewArchive Versionnumber\n\n" \
@@ -471,6 +482,7 @@ HELPTEXT = GREEN + BOLD + "\t\t\t\tMYPKG\n" \
                                                                             "\n" \
                                                                             "Options for global operations (can be run anywhere):\n" \
                                                                             " up\t\t Update the pspec.xml, build and install the package, delete the package file.\n" \
+                                                                            " dc\t\t Delete all cached packages (like `cp`, but for all packages).\n" \
                                                                             " ui\t\t Update installed 3rd party packages.\n" \
                                                                             " li\t\t List installed 3rd party packages.\n" \
                                                                             " la\t\t List available 3rd party packages.\n" \
